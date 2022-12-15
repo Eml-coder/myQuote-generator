@@ -3,25 +3,14 @@ const quoteText = document.getElementById('quote');
 const authorText = document.getElementById('author');
 const tweetBttn = document.getElementById('tweet');
 const newQuoteBttn = document.getElementById('new-quote');
-//loaders
-// function load() {
-//   quoteWrapper.hidden = true;
-//   //loader.hidden = false;
-// }
-// function finalised () {
-//   quoteWrapper.hidden = false;
-//   //loader.hidden = true;
-// }
 
 //Setting up API
 let apiQ = [];
 
 const newQ = () => {
-  //load();
-
   //get random quote
   const randomQuote = apiQ[Math.floor(Math.random() * apiQ.length)];
-  //check if author is blank or null, if it is, we want to display 'unknown' instead of blank, if it is not blank, we want to display the author name.
+
   !randomQuote.author
     ? (authorText.textContent = 'Uknown author')
     : (authorText.textContent = randomQuote.author);
@@ -31,28 +20,23 @@ const newQ = () => {
     ? quoteText.classList.add('long-quote')
     : quoteText.classList.remove('long-quote'); //
 
-  //display quote to the interface, hide loader
   quoteText.textContent = randomQuote.text;
-  //loader
-  //finalised();
 };
 
 const getQ = async () => {
-  //load();
   const apiLink = 'https://type.fit/api/quotes';
   try {
     const reply = await fetch(apiLink);
     apiQ = await reply.json();
     newQ();
   } catch (error) {
-    //will catch errors here
+    //errors here
   }
 };
 
 //Twitter functionality
 const tweetQ = () => {
   const tweetLink = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
-  //open a new window with the tweet link
   window.open(tweetLink, '_blank');
 };
 
@@ -60,7 +44,4 @@ const tweetQ = () => {
 newQuoteBttn.addEventListener('click', newQ);
 tweetBttn.addEventListener('click', tweetQ);
 
-//getQ function is called when the page loads
 getQ();
-
-//load();
