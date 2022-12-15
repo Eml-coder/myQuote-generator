@@ -26,10 +26,10 @@ const newQ = () => {
     ? (authorText.textContent = 'Uknown author')
     : (authorText.textContent = randomQuote.author);
 
-  //if the quote text length is greater than 120, we want to change the font size to 30px, if it is not, we want to change the font size to 50px:
+  //if the quote text length is greater than 120,  change the font size to 30px, if it is not,  change the font size to 50px:
   randomQuote.text.length > 150
     ? quoteText.classList.add('long-quote')
-    : quoteText.classList.remove('long-quote'); //"long-quote" is a class in the css file?
+    : quoteText.classList.remove('long-quote'); //
 
   //display quote to the interface, hide loader
   quoteText.textContent = randomQuote.text;
